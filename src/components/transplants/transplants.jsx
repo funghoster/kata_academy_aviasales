@@ -1,59 +1,19 @@
-import { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+
+import { toggleAll, toggleFilter } from '../../stores/filterSlice'
 
 import checkBoxStyle from './transplants.module.scss'
 
 const Transplants = () => {
-  const [transplants, setTransplants] = useState({
-    all: false,
-    transfer: {
-      nonStop: false,
-      oneTransfer: false,
-      twoTransfer: false,
-      threeTransfer: false,
-    },
-  })
+  const dispatch = useDispatch()
+  const filters = useSelector((state) => state.filters)
 
-  const setChecked = (name) => {
-    switch (name) {
-      case 'all':
-        console.log('all')
-        setTransplants((trans) => {
-          return {
-            all: !trans.all,
-            transfer: {
-              nonStop: !trans.all,
-              oneTransfer: !trans.all,
-              twoTransfer: !trans.all,
-              threeTransfer: !trans.all,
-            },
-          }
-        })
-        break
-      case 'nonStop':
-        console.log('nonStop')
-        setTransplants((trans) => {
-          return { ...trans, transfer: { ...trans.transfer, nonStop: !trans.transfer.nonStop } }
-        })
-        break
-      case 'oneTransfer':
-        console.log('oneTransfer')
-        setTransplants((trans) => {
-          return { ...trans, transfer: { ...trans.transfer, oneTransfer: !trans.transfer.oneTransfer } }
-        })
-        break
-      case 'twoTransfer':
-        console.log('twoTransfer')
-        setTransplants((trans) => {
-          return { ...trans, transfer: { ...trans.transfer, twoTransfer: !trans.transfer.twoTransfer } }
-        })
-        break
-      case 'threeTransfer':
-        console.log('threeTransfer')
-        setTransplants((trans) => {
-          return { ...trans, transfer: { ...trans.transfer, threeTransfer: !trans.transfer.threeTransfer } }
-        })
-        break
-    }
+  const handleAllChange = ({ target: { checked } }) => {
+    dispatch(toggleAll(checked))
+  }
+
+  const handleFilterChange = ({ target: { name, checked } }) => {
+    dispatch(toggleFilter({ filterName: name, checked }))
   }
   return (
     <div className="change">
@@ -62,60 +22,60 @@ const Transplants = () => {
         <li>
           <input
             className={checkBoxStyle.checkbox}
-            checked={transplants.all}
+            checked={filters.all}
             type="checkbox"
             id="all"
             name="all"
             value="all"
-            onChange={(e) => setChecked(e.currentTarget.value)}
+            onChange={handleAllChange}
           />
           <label htmlFor="all">Все</label>
         </li>
         <li>
           <input
             className={checkBoxStyle.checkbox}
-            checked={transplants.transfer.nonStop}
+            checked={filters.other.nonStop}
             type="checkbox"
             id="nonStop"
             name="nonStop"
             value="nonStop"
-            onChange={(e) => setChecked(e.currentTarget.value)}
+            onChange={handleFilterChange}
           />
           <label htmlFor="nonStop">Без пересадок</label>
         </li>
         <li>
           <input
             className={checkBoxStyle.checkbox}
-            checked={transplants.transfer.oneTransfer}
+            checked={filters.other.oneTransfer}
             type="checkbox"
             id="oneTransfer"
             name="oneTransfer"
             value="oneTransfer"
-            onChange={(e) => setChecked(e.currentTarget.value)}
+            onChange={handleFilterChange}
           />
           <label htmlFor="oneTransfer">1 пересадка</label>
         </li>
         <li>
           <input
             className={checkBoxStyle.checkbox}
-            checked={transplants.transfer.twoTransfer}
+            checked={filters.other.twoTransfer}
             type="checkbox"
             id="twoTransfer"
             name="twoTransfer"
             value="twoTransfer"
-            onChange={(e) => setChecked(e.currentTarget.value)}
+            onChange={handleFilterChange}
           />
           <label htmlFor="twoTransfer">2 пересадки</label>
         </li>
         <li>
           <input
             className={checkBoxStyle.checkbox}
-            checked={transplants.transfer.threeTransfer}
+            checked={filters.other.threeTransfer}
             type="checkbox"
             id="threeTransfer"
             name="threeTransfer"
             value="threeTransfer"
-            onChange={(e) => setChecked(e.currentTarget.value)}
+            onChange={handleFilterChange}
           />
           <label htmlFor="threeTransfer">3 пересадки</label>
         </li>
