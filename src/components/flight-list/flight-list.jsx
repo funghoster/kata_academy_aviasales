@@ -1,27 +1,26 @@
-import { useState } from 'react'
-import classNames from 'classnames'
+import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
 import Card from '../card'
-
-import styleButton from './flight-list.module.scss'
+import { fetchSearchId, fetchTickets } from '../../stores/ticketsSlice'
 
 const FlightList = () => {
+  const dispatch = useDispatch()
+  const isSearchId = useSelector((state) => state.tickets.searchId)
   const newArr = new Array(5).fill({})
   const [arr, setArr] = useState(newArr)
-  const btnClass = classNames(styleButton.buttonSort, styleButton.buttonSortSelected)
   const elements = arr.map((el, index) => {
     return <Card key={index} />
   })
-  return (
-    <>
-      <div className="aviasales__header">
-        <button className={btnClass}>Самый дешевый</button>
-        <button className={styleButton.buttonSort}>Самый быстрый</button>
-        <button className={styleButton.buttonSort}>Оптимальный</button>
-      </div>
-      {elements}
-    </>
-  )
+
+  useEffect(() => {
+    dispatch(fetchSearchId())
+  }, [])
+
+  useEffect(() => {
+    dispatch(fetchTickets())
+  }, [isSearchId, dispatch])
+  return <>{elements}</>
 }
 
 export default FlightList

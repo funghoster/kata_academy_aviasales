@@ -4,7 +4,8 @@ import logo from '@/logo.svg'
 
 import Transplants from '../transplants'
 import '../../styles/style.scss'
-import FlightList from '../flight-list/flight-list'
+import FlightList from '../flight-list'
+import FlightFilters from '../flight-filters'
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <div className="aviasales__wrapper">
           <Transplants />
           <div className="aviasales__body">
+            <FlightFilters />
             <FlightList />
             <button className="aviasales__next">Показать еще 5 билетов!</button>
           </div>

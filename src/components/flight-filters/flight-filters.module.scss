@@ -1,0 +1,32 @@
+.buttonSort {
+  display: flex;
+  height: 50px;
+  width: 100%;
+  color: #4a4a4a;
+  text-align: center;
+  font-family: Open Sans;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 20px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  border-left: 1px solid #dfe5ec;
+  border-right: 1px solid #dfe5ec;
+  align-items: center;
+  justify-content: center;
+  &:last-child,
+  &:first-child {
+    border: none;
+  }
+}
+.buttonSortSelected {
+  color: #fff;
+  background-color: #2196f3;
+}
+
+@media (max-width: 575px) {
+  .buttonSort {
+    font-size: 10px;
+  }
+}
