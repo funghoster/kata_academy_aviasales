@@ -1,6 +1,6 @@
 import { Col, Row } from 'antd'
 
-import logo from '@/logo.svg'
+import logo from '@/Logo.svg'
 
 import Transplants from '../transplants'
 import '../../styles/style.scss'
