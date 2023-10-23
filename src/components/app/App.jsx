@@ -19,7 +19,6 @@ function App() {
           <div className="aviasales__body">
             <FlightFilters />
             <FlightList />
-            <button className="aviasales__next">Показать еще 5 билетов!</button>
           </div>
         </div>
       </Col>

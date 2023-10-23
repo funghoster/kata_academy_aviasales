@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit'
 const sortSlice = createSlice({
   name: 'filters',
   initialState: {
-    sort: 'OPTIMAL',
+    sort: 'CHEAPEST',
   },
   reducers: {
     setSort: (state, action) => {

@@ -5,7 +5,7 @@ const filtersSlice = createSlice({
   initialState: {
     all: false,
     other: {
-      nonStop: false,
+      nonStop: true,
       oneTransfer: false,
       twoTransfer: false,
       threeTransfer: false,
